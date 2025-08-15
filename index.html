@@ -78,7 +78,7 @@
     .row{display:flex;align-items:center;gap:10px;flex-wrap:wrap}
     .row .grow{flex:1}
 
-    .btn{appearance:none;border:1px solid var(--chip-border);background:var(--btn-bg);color:var(--btn-fg);padding:9px 12px;border-radius:10px;cursor:default;font-weight:600;font-size:13px;transition:.15s transform ease, .15s background ease; box-shadow:0 6px 16px rgba(0,0,0,.08)}
+    .btn{appearance:none;border:1px solid var(--chip-border);background:var(--btn-bg);color:var(--btn-fg);padding:9px 12px;border-radius:10px;cursor:default;font-weight:600;font-size:13px;transition:.15s transform ease, .15s background ease; box-shadow:0 6px 16px rgba(0,0,0,.08); cursor:pointer}
     .btn:hover{transform:translateY(-1px)}
     .btn:active{transform:translateY(0)}
     .btn.primary{border-color:transparent;background:var(--accent);color:var(--btn-primary-fg)}
@@ -123,7 +123,7 @@
     <p class="lead">Gib einen Text ein. Die initialen Tokens sind Zeichen. Bei jedem Schritt wird das häufigste Paar benachbarter Tokens zusammengeführt.</p>
 
     <div class="card" style="margin-bottom:16px">
-      <div class="hd"><strong>1) Eingabe & Steuerung</strong></div>
+      <div class="hd"><strong>Eingabe & Steuerung</strong></div>
       <div class="bd">
         <div class="row" style="margin-bottom:8px">
           <div class="grow">
@@ -146,12 +146,12 @@
 
     <div class="grid">
       <div class="card">
-        <div class="hd"><strong>2) Aktueller Token-Stream</strong><span class="hint" id="stepInfo" style="margin-left:auto"></span></div>
+        <div class="hd"><strong>Aktueller Token-Stream</strong><span class="hint" id="stepInfo" style="margin-left:auto"></span></div>
         <div class="bd"><div id="tokens" class="tokens"></div></div>
       </div>
 
       <div class="card">
-        <div class="hd"><strong>3) Häufigkeiten benachbarter Token</strong></div>
+        <div class="hd"><strong>Häufigkeiten benachbarter Token</strong></div>
         <div class="bd">
           <div id="pairs" class="pairs"></div>
         </div>
@@ -160,11 +160,11 @@
 
     <div class="grid" style="margin-top:16px">
       <div class="card">
-        <div class="hd"><strong>4) Vokabular</strong></div>
+        <div class="hd"><strong>Vokabular</strong></div>
         <div class="bd"><div id="vocab" class="vocab"></div></div>
       </div>
       <div class="card">
-        <div class="hd"><strong>5) Merge-Verlauf</strong><span class="mini" style="margin-left:auto">klicke, um zum jeweiligen Schritt zu springen</span></div>
+        <div class="hd"><strong>Merge-Verlauf</strong></div>
         <div class="bd"><div id="history" class="history"></div></div>
       </div>
     </div>
@@ -176,7 +176,7 @@
           <li>Starte mit einzelnen Zeichen als Token.</li>
           <li>Zähle alle benachbarten Token-Paare im Text.</li>
           <li>Merge das <em>häufigste</em> Paar zu einem neuen Token (z. B. <span class="kbd">t</span> + <span class="kbd">h</span> → <span class="kbd">th</span>).</li>
-          <li>Wiederhole 2–3, bis genug Merges durchgeführt wurden. Das Vokabular wächst um die neuen Token.</li>
+          <li>Wiederhole die Schritte 2 und 3 bis genug Merges durchgeführt wurden. Das Vokabular wächst um die neuen Token.</li>
         </ol>
       </div>
     </div>
@@ -376,8 +376,6 @@
       const [a,b] = keyToPair(m.key);
       row.innerHTML = `<span class="id">${i+1}.</span>
         <span class="pair-key chips"><span class="chip">${safeHTMLText(a)}</span><span class="chip">${safeHTMLText(b)}</span></span>`;
-      row.style.cursor='pointer';
-      row.addEventListener('click', ()=> jumpToStep(i+1));
       elHist.appendChild(row);
     });
   }
